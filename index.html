@@ -548,36 +548,39 @@
         }, true);
     })();
 
-    // --- CLEAN GLOBAL FORMATTING LOGIC ---
+    // --- CLEAN GLOBAL FORMATTING LOGIC (CMS-FRIENDLY + BOLD HEADINGS) ---
     function applyGlobalFormatting(htmlString) {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = htmlString;
         const paragraphs = tempDiv.querySelectorAll('p');
         
+        let cleanHtml = "";
+        
         paragraphs.forEach(p => {
             let text = p.innerText.trim();
-            p.removeAttribute('style');
-
-            if (!text) { p.remove(); return; }
             
-            p.style.marginBottom = "24px";
-            p.style.lineHeight = "1.6";
+            // Skip empty lines
+            if (!text) return;
             
+            // Handle Ad Tokens safely
             if (text.includes('{@@adtoken')) {
-                p.innerHTML = text; 
+                cleanHtml += `<p>${text}</p>`;
                 return;
             }
 
+            // Detect if the line is a heading (short length, no ending punctuation)
             const isHeading = text.length > 0 && text.length < 100 && !/[.!?]$/.test(text);
 
             if (isHeading) {
-                p.innerHTML = `<strong>${text}</strong>`;
+                // Wrap in strong tags for bolding, NO inline styles!
+                cleanHtml += `<p><strong>${text}</strong></p>`;
             } else {
-                p.innerHTML = text;
+                // Standard paragraph
+                cleanHtml += `<p>${text}</p>`;
             }
         });
 
-        return tempDiv.innerHTML;
+        return cleanHtml;
     }
 
     // --- WORD UPLOAD & HTML PARSING ---
@@ -616,7 +619,7 @@
                 imgCat: row[0] || 'N/A', imgSubCat: row[1] || 'N/A', topic: row[2] || 'N/A',
                 title: row[3] || 'N/A', desc: row[4] || 'N/A', conCat: row[5] || 'N/A',
                 conSubCat: row[6] || 'N/A', remarks: row[7] || 'N/A',
-                article: wordArticles[index] || '<p style="margin-bottom: 24px;">No article content found for this tab.</p>'
+                article: wordArticles[index] || '<p>No article content found for this tab.</p>'
             };
         });
 
