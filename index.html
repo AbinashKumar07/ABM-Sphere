@@ -548,20 +548,26 @@
         }, true);
     })();
 
-    // --- CLEAN GLOBAL FORMATTING LOGIC (CMS-FRIENDLY + BOLD HEADINGS) ---
+    // --- CLEAN GLOBAL FORMATTING LOGIC (CMS-FRIENDLY + BOLD HEADINGS + FIRST LINE FIX) ---
     function applyGlobalFormatting(htmlString) {
+        // We replace closing tags and <br>s with newlines before stripping HTML 
+        // to prevent sentences from getting glued together or lost.
+        let processedHtml = htmlString
+            .replace(/<\/(p|h1|h2|h3|h4|h5|h6|div|li)>/gi, '\n')
+            .replace(/<br\s*[\/]?>/gi, '\n');
+            
         const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = htmlString;
-        const paragraphs = tempDiv.querySelectorAll('p');
+        tempDiv.innerHTML = processedHtml;
+        
+        // Extract pure text safely
+        let rawText = tempDiv.textContent || tempDiv.innerText || "";
+        
+        // Split by newlines, trim whitespace, and remove empty lines
+        let lines = rawText.split('\n').map(s => s.trim()).filter(s => s.length > 0);
         
         let cleanHtml = "";
         
-        paragraphs.forEach(p => {
-            let text = p.innerText.trim();
-            
-            // Skip empty lines
-            if (!text) return;
-            
+        lines.forEach(text => {
             // Handle Ad Tokens safely
             if (text.includes('{@@adtoken')) {
                 cleanHtml += `<p>${text}</p>`;
