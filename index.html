@@ -21,9 +21,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
 <style>
-    /* =========================================================
-       1. THEMES & FLUID DESIGN TOKENS
-       ========================================================= */
     :root {
         --font: 'Poppins', sans-serif;
         --radius-pill: 999px;
@@ -101,7 +98,6 @@
         box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     }
 
-    /* Buttons */
     .btn {
         background: var(--accent); color: #000; border: none; padding: 12px 28px;
         border-radius: var(--radius-pill); font-weight: 700; font-size: 14px; cursor: pointer; 
@@ -115,35 +111,26 @@
     .btn-sm { padding: 8px 20px; font-size: 13px; }
     .btn-done-active { background: #2ecc71 !important; color: #000 !important; border-color: #2ecc71 !important; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4) !important; }
 
-    /* =========================================================
-       2. AUTHENTICATION & ADMIN UI
-       ========================================================= */
+    /* AUTH & PROFILES */
     #view-auth, #view-admin-login {
         position: fixed; inset: 0; background: var(--bg-color); z-index: 9999;
         display: flex; flex-direction: column; align-items: center; justify-content: center;
     }
     
     .auth-title { font-size: 36px; font-weight: 700; margin-bottom: 40px; color: var(--text-main); }
-    
-    .profiles-container {
-        display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; max-width: 800px;
-    }
-    
-    .profile-card {
-        display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: var(--transition);
-    }
+    .profiles-container { display: flex; gap: 30px; flex-wrap: wrap; justify-content: center; max-width: 800px; }
+    .profile-card { display: flex; flex-direction: column; align-items: center; cursor: pointer; transition: var(--transition); }
     .profile-card:hover { transform: scale(1.1); }
     .profile-card:hover .profile-name { color: var(--accent); }
     
     .profile-avatar {
         width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--glass-border);
         background: var(--card-bg); display: flex; align-items: center; justify-content: center;
-        font-size: 40px; overflow: hidden; margin-bottom: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        overflow: hidden; margin-bottom: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
     .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .profile-name { font-size: 18px; font-weight: 600; color: var(--text-muted); transition: var(--transition); }
 
-    /* Modals */
     .modal-overlay {
         position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 10000;
         display: none; align-items: center; justify-content: center; backdrop-filter: blur(10px);
@@ -158,24 +145,21 @@
     }
     .modal-box input:focus { border-color: var(--accent); }
 
-    /* Admin Panel */
+    /* ADMIN DASHBOARD */
     #view-admin-dashboard { padding: 40px; max-width: 1000px; margin: 0 auto; display: none; width: 100%; box-sizing: border-box; }
     .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
     .admin-table th, .admin-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
     .admin-table th { color: var(--accent); font-weight: 700; }
 
-    /* =========================================================
-       3. NAVBAR & UNIFIED THEME
-       ========================================================= */
+    /* NAVBAR */
     .top-nav {
         display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
         padding: 15px 40px; margin: 20px; border-radius: var(--radius-pill); gap: 15px;
     }
     .brand { display: flex; align-items: center; }
-    
     .nav-controls { display: flex; align-items: center; gap: 20px; }
     .user-badge { display: flex; align-items: center; gap: 10px; font-weight: 600; }
-    .user-badge img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--accent); }
+    .user-badge img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--accent); object-fit: cover; }
     
     .theme-dropdown {
         background: var(--card-bg); color: var(--text-main); border: 1px solid var(--glass-border);
@@ -183,26 +167,19 @@
         outline: none; font-weight: 600;
     }
 
-    /* =========================================================
-       4. PROGRESS STATS UI
-       ========================================================= */
-    .stats-container {
-        display: flex; gap: 20px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap;
-    }
+    /* STATS */
+    .stats-container { display: flex; gap: 20px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; }
     .stat-box {
         background: var(--card-bg); border: 1px solid var(--glass-border); border-radius: 12px;
         padding: 20px 40px; text-align: center; min-width: 150px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
     .stat-num { font-size: 36px; font-weight: 800; line-height: 1; margin-bottom: 5px; }
     .stat-label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
-    
     .text-blue { color: #5c6bc0; }
     .text-green { color: #2ecc71; }
     .text-orange { color: #e67e22; }
 
-    /* =========================================================
-       5. MAIN VIEWS (EXCEL / BATCH)
-       ========================================================= */
+    /* VIEWS */
     .view-section { display: none; padding: 20px 40px 60px; max-width: 1500px; margin: 0 auto; width: 100%; box-sizing: border-box; }
     .view-section.active { display: block; animation: slideUp 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); }
     @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -216,9 +193,16 @@
     .jexcel tbody tr td { background-color: var(--cell-bg) !important; color: var(--text-main) !important; border-color: var(--glass-border) !important; font-family: var(--font) !important; font-size: 13px !important; }
     .jexcel thead tr td { background-color: var(--cell-header) !important; color: var(--accent) !important; border-color: var(--glass-border) !important; font-family: var(--font) !important; font-weight: 600 !important; }
 
-    .upload-box { padding: 40px 20px; text-align: center; cursor: pointer; transition: var(--transition); position: relative; max-width: 500px; margin: 0 auto 30px auto; border: 2px dashed var(--glass-border); }
+    /* FIXED UPLOAD BOX */
+    .upload-box { 
+        padding: 40px 20px; text-align: center; cursor: pointer; transition: var(--transition); 
+        position: relative; max-width: 500px; margin: 0 auto 30px auto; border: 2px dashed var(--glass-border); 
+        z-index: 50; pointer-events: auto;
+    }
     .upload-box:hover { border-color: var(--accent); background: var(--hover-bg); transform: scale(1.02); }
-    .upload-box input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .upload-box input[type="file"] { 
+        position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; z-index: 51;
+    }
     .upload-icon { font-size: 40px; margin-bottom: 10px; }
     
     .batch-controls { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 30px; padding: 20px 30px; gap: 20px; }
@@ -229,9 +213,7 @@
     .topic-title-wrapper { display: flex; align-items: center; flex-wrap: wrap; gap: 15px; flex: 1; min-width: 200px;}
     .topic-pill { background: var(--accent); color: #000; padding: 6px 14px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 700; white-space: nowrap; }
 
-    /* =========================================================
-       6. 2-COLUMN IMMERSIVE POPUP UI
-       ========================================================= */
+    /* POPUP VIEWER */
     .popup-overlay-wrapper { position: fixed; inset: 0; background-color: rgba(0,0,0,0.7); z-index: 1000; display: none; justify-content: center; align-items: center; backdrop-filter: blur(10px); padding: 15px; }
     .popup-container { display: flex; width: 100%; max-width: 1400px; height: 90vh; position: relative; flex-direction: column; border: 1px solid var(--glass-border); overflow: hidden; }
 
@@ -239,9 +221,7 @@
     .popup-topbar-title { font-weight: 700; font-size: 16px; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px;}
     .popup-topbar-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 
-    /* 2 Column Layout Setup */
     .popup-body { display: grid; grid-template-columns: 3fr 1fr; flex: 1; overflow: hidden; background: transparent; }
-    
     .popup-left-pane { padding: 30px; overflow-y: auto; position: relative; }
     .popup-right-pane { padding: 30px 25px; background: rgba(0,0,0,0.25); border-left: 1px solid var(--glass-border); overflow-y: auto; display: flex; flex-direction: column; gap: 30px; }
 
@@ -268,14 +248,10 @@
 </head>
 <body>
 
-<!-- =========================================================
-     AUTH / PROFILE SELECTOR
-     ========================================================= -->
+<!-- AUTH / PROFILE SELECTOR -->
 <div id="view-auth">
     <div class="auth-title">Who's going on an adventure?</div>
-    <div class="profiles-container" id="profile-list">
-        <!-- Rendered by JS -->
-    </div>
+    <div class="profiles-container" id="profile-list"></div>
 </div>
 
 <div class="modal-overlay" id="login-modal">
@@ -288,9 +264,7 @@
     </div>
 </div>
 
-<!-- =========================================================
-     ADMIN LOGIN & DASHBOARD (Accessed via ?admin=true)
-     ========================================================= -->
+<!-- ADMIN PANEL -->
 <div id="view-admin-login" style="display: none;">
     <div class="modal-box glass-panel">
         <h2>Admin Authentication</h2>
@@ -320,19 +294,14 @@
         <thead>
             <tr><th>Name</th><th>Password</th><th>Role</th><th>Action</th></tr>
         </thead>
-        <tbody id="admin-table-body">
-            <!-- Rendered by JS -->
-        </tbody>
+        <tbody id="admin-table-body"></tbody>
     </table>
     <button class="btn btn-secondary" style="margin-top: 30px;" onclick="logout()">Exit Admin</button>
 </div>
 
-<!-- =========================================================
-     MAIN APP WRAPPER (Hidden until logged in)
-     ========================================================= -->
+<!-- MAIN APP WRAPPER -->
 <div id="app-wrapper" style="display: none;">
 
-    <!-- TOP NAVIGATION -->
     <nav class="top-nav glass-panel">
         <div class="brand">
             <svg width="180" height="36" viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -347,7 +316,6 @@
         </div>
         
         <div class="nav-controls">
-            <!-- Unified Theme Dropdown -->
             <select class="theme-dropdown" id="theme-selector">
                 <option value="dark">🌙 Dark Theme</option>
                 <option value="light">☀️ Light Theme</option>
@@ -385,10 +353,8 @@
         </div>
     </section>
 
-    <!-- VIEW 2: BATCH LIST & STATS -->
+    <!-- VIEW 2: BATCH LIST -->
     <section id="view-batch" class="view-section">
-        
-        <!-- NEW STATS DASHBOARD -->
         <div class="stats-container">
             <div class="stat-box">
                 <div class="stat-num text-blue" id="stat-total">0</div>
@@ -432,10 +398,7 @@
                 </div>
             </div>
 
-            <!-- TWO COLUMNS -->
             <div class="popup-body">
-                
-                <!-- Left Pane: Content -->
                 <div class="popup-left-pane">
                     <div class="card"><div class="card-header"><span class="card-title-text">Topic</span></div><div class="card-content" id="pop-topic"></div></div>
                     <div class="card"><div class="card-header"><span class="card-title-text">Title</span></div><div class="card-content" id="pop-title"></div></div>
@@ -452,7 +415,6 @@
                     </div>
                 </div>
 
-                <!-- Right Pane: Categories -->
                 <div class="popup-right-pane">
                     <div class="side-group"><div class="side-label">Image Category</div><div class="side-value" id="pop-img-cat"></div></div>
                     <div class="side-group"><div class="side-label">Image Sub-Category</div><div class="side-value" id="pop-img-sub"></div></div>
@@ -460,21 +422,17 @@
                     <div class="side-group"><div class="side-label">Content Category</div><div class="side-value" id="pop-con-cat"></div></div>
                     <div class="side-group"><div class="side-label">Content Sub-Category</div><div class="side-value" id="pop-con-sub"></div></div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    /* =========================================================
-       1. DATABASE & AUTHENTICATION (localStorage)
-       ========================================================= */
     const defaultDB = [
-        { id: 'u1', name: 'Abinash', pass: 'Abinash@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abinash', theme: 'dark', role: 'user' },
-        { id: 'u2', name: 'Sreeraj', pass: 'Sreeraj@KM', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sreeraj', theme: 'dark', role: 'user' },
-        { id: 'u3', name: 'Muskan', pass: 'Muskan@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Muskan', theme: 'dark', role: 'user' },
-        { id: 'u4', name: 'Utsav', pass: 'Utsav@Madaan', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Utsav', theme: 'dark', role: 'user' },
+        { id: 'u1', name: 'Abinash', pass: 'Abinash@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abinash&gender=male', theme: 'dark', role: 'user' },
+        { id: 'u2', name: 'Sreeraj', pass: 'Sreeraj@KM', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sreeraj&gender=male', theme: 'dark', role: 'user' },
+        { id: 'u3', name: 'Muskan', pass: 'Muskan@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Muskan&gender=female', theme: 'dark', role: 'user' },
+        { id: 'u4', name: 'Utsav', pass: 'Utsav@Madaan', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Utsav&gender=male', theme: 'dark', role: 'user' },
         { id: 'admin', name: 'Admin', pass: 'Abinash@2005', avatar: '', theme: 'dark', role: 'admin' }
     ];
 
@@ -486,7 +444,6 @@
     let currentUser = JSON.parse(localStorage.getItem('abm_current_user'));
     let selectedLoginId = null;
 
-    // Check Routing
     const urlParams = new URLSearchParams(window.location.search);
     const isAdminRoute = urlParams.has('admin');
 
@@ -499,7 +456,6 @@
         renderProfiles();
     }
 
-    // Profile Screen
     function renderProfiles() {
         const container = document.getElementById('profile-list');
         container.innerHTML = '';
@@ -536,7 +492,6 @@
         }
     };
 
-    // Admin Routing
     document.getElementById('btn-admin-login').onclick = () => {
         const uName = document.getElementById('admin-user').value;
         const pass = document.getElementById('admin-pass').value;
@@ -584,30 +539,22 @@
 
     window.logout = () => {
         localStorage.removeItem('abm_current_user');
-        window.location.href = window.location.pathname; // Strips ?admin=true if present
+        window.location.href = window.location.pathname;
     };
 
-    /* =========================================================
-       2. APP INITIALIZATION & THEMES
-       ========================================================= */
     function initApp() {
         document.getElementById('view-auth').style.display = 'none';
         document.getElementById('app-wrapper').style.display = 'block';
         
-        // Setup User Badge
         document.getElementById('nav-username').innerText = currentUser.name;
         document.getElementById('nav-avatar').src = currentUser.avatar;
 
-        // Apply Theme
         document.documentElement.setAttribute('data-theme', currentUser.theme);
         document.getElementById('theme-selector').value = currentUser.theme;
         
-        // Theme Changer
         document.getElementById('theme-selector').addEventListener('change', (e) => {
             const newTheme = e.target.value;
             document.documentElement.setAttribute('data-theme', newTheme);
-            
-            // Save preference to DB
             currentUser.theme = newTheme;
             localStorage.setItem('abm_current_user', JSON.stringify(currentUser));
             const userIndex = usersDB.findIndex(u => u.id === currentUser.id);
@@ -617,9 +564,6 @@
         initGrid();
     }
 
-    /* =========================================================
-       3. CORE ABM SPHERE LOGIC (Matrix & Parsing)
-       ========================================================= */
     let spreadsheet;
     let wordArticles = [];
     let mergedData = [];
@@ -727,7 +671,7 @@
         document.getElementById('view-upload').classList.remove('active');
         document.getElementById('view-batch').classList.add('active');
         currentPage = 0;
-        updateStats(); // Init Stats
+        updateStats();
         renderBatch();
     });
 
@@ -736,7 +680,6 @@
         document.getElementById('view-upload').classList.add('active');
     });
 
-    // --- PROGRESS STATS ENGINE ---
     function updateStats() {
         const total = mergedData.length;
         const completed = mergedData.filter(d => d.isDone).length;
@@ -790,7 +733,6 @@
         if ((currentPage + 1) * ITEMS_PER_PAGE < mergedData.length) { firePartyBomb(); currentPage++; renderBatch(); }
     });
 
-    // --- POPUP VIEWER LOGIC ---
     document.getElementById('btn-start-queue').addEventListener('click', () => openPopup(currentPage * ITEMS_PER_PAGE));
 
     function openPopup(index) {
@@ -836,7 +778,7 @@
     
     document.getElementById('pop-btn-next').addEventListener('click', () => {
         mergedData[currentPopupIndex].isDone = true;
-        updateStats(); // Update Dashboard Numbers!
+        updateStats();
         renderBatch(); 
         
         const startOfBatch = currentPage * ITEMS_PER_PAGE;
@@ -857,7 +799,6 @@
 
     document.getElementById('pop-btn-close').addEventListener('click', () => document.getElementById('popup-overlay').style.display = 'none');
 
-    // --- SEND TO CMS (EXTENSION BRIDGE) ---
     document.getElementById('pop-btn-send-cms').addEventListener('click', () => {
         const articlePayload = mergedData[currentPopupIndex];
         window.postMessage({ type: 'ABM_PUSH_TO_CMS', payload: articlePayload }, '*');
@@ -867,7 +808,6 @@
         setTimeout(() => cmsBtn.innerText = "🚀 Send to CMS", 1500);
     });
 
-    // --- UTILS (Copy) ---
     document.querySelectorAll('.btn-copy').forEach(button => {
         button.addEventListener('click', async (e) => {
             const contentContainer = e.currentTarget.closest('.card').querySelector('.card-content');
