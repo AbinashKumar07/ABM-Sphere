@@ -29,49 +29,68 @@
         --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
+    /* THEME 1A: DARK (BLACK & WHITE GRADIENT) */
     [data-theme="dark"] {
-        --bg-color: #050505;
-        --bg-mesh: radial-gradient(at 0% 0%, rgba(20,20,40,1) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(10,30,40,1) 0px, transparent 50%);
+        --bg-color: #080808;
+        --bg-mesh: radial-gradient(at 0% 0%, #1c1c1c 0px, transparent 50%), radial-gradient(at 100% 100%, #000000 0px, transparent 50%);
         --text-main: #ffffff;
-        --text-muted: #9aa0a6;
-        --accent: #8ab4f8;
-        --accent-alt: #d848ff;
-        --glass-bg: rgba(255, 255, 255, 0.04);
-        --glass-border: rgba(255, 255, 255, 0.12);
-        --card-bg: rgba(255, 255, 255, 0.06);
-        --hover-bg: rgba(255, 255, 255, 0.1);
-        --cell-bg: rgba(20, 20, 20, 0.6);
-        --cell-header: rgba(0, 0, 0, 0.6);
+        --text-muted: #a0a0a0;
+        --accent: #ffffff;
+        --accent-alt: #888888;
+        --glass-bg: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.15);
+        --card-bg: rgba(255, 255, 255, 0.08);
+        --hover-bg: rgba(255, 255, 255, 0.12);
+        --cell-bg: rgba(15, 15, 15, 0.8);
+        --cell-header: rgba(0, 0, 0, 0.8);
     }
 
+    /* THEME 1B: LIGHT (BLACK & WHITE GRADIENT) */
     [data-theme="light"] {
-        --bg-color: #f0f2f5;
-        --bg-mesh: radial-gradient(at 0% 0%, rgba(200,220,255,1) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(255,230,240,1) 0px, transparent 50%);
-        --text-main: #111111;
-        --text-muted: #555555;
-        --accent: #1a73e8;
-        --accent-alt: #d848ff;
-        --glass-bg: rgba(255, 255, 255, 0.6);
-        --glass-border: rgba(0, 0, 0, 0.1);
-        --card-bg: rgba(255, 255, 255, 0.8);
-        --hover-bg: rgba(0, 0, 0, 0.05);
-        --cell-bg: rgba(255, 255, 255, 0.7);
-        --cell-header: rgba(240, 240, 240, 0.9);
+        --bg-color: #e6e6e6;
+        --bg-mesh: radial-gradient(at 0% 0%, #ffffff 0px, transparent 50%), radial-gradient(at 100% 100%, #cccccc 0px, transparent 50%);
+        --text-main: #121212;
+        --text-muted: #666666;
+        --accent: #000000;
+        --accent-alt: #444444;
+        --glass-bg: rgba(255, 255, 255, 0.7);
+        --glass-border: rgba(0, 0, 0, 0.15);
+        --card-bg: rgba(255, 255, 255, 0.9);
+        --hover-bg: rgba(0, 0, 0, 0.06);
+        --cell-bg: rgba(255, 255, 255, 0.9);
+        --cell-header: rgba(220, 220, 220, 0.9);
     }
 
-    [data-theme="neon"] {
+    /* THEME 2A: PURPLE (BLUE & PURPLE GRADIENT) */
+    [data-theme="purple"] {
         --bg-color: #090014;
-        --bg-mesh: radial-gradient(at 20% 20%, rgba(138, 43, 226, 0.4) 0px, transparent 50%), radial-gradient(at 80% 80%, rgba(255, 0, 128, 0.3) 0px, transparent 50%);
+        --bg-mesh: radial-gradient(at 20% 20%, rgba(138, 43, 226, 0.5) 0px, transparent 50%), radial-gradient(at 80% 80%, rgba(26, 115, 232, 0.4) 0px, transparent 50%);
         --text-main: #f5eeff;
         --text-muted: #b898d9;
         --accent: #d848ff;
-        --accent-alt: #00f5ff;
+        --accent-alt: #8ab4f8;
         --glass-bg: rgba(138, 43, 226, 0.08);
         --glass-border: rgba(216, 72, 255, 0.35);
         --card-bg: rgba(20, 0, 30, 0.7);
         --hover-bg: rgba(216, 72, 255, 0.15);
-        --cell-bg: rgba(20, 0, 40, 0.5);
-        --cell-header: rgba(10, 0, 20, 0.8);
+        --cell-bg: rgba(20, 0, 40, 0.6);
+        --cell-header: rgba(10, 0, 20, 0.9);
+    }
+
+    /* THEME 2B: BLUE (BLUE & PURPLE GRADIENT) */
+    [data-theme="blue"] {
+        --bg-color: #000914;
+        --bg-mesh: radial-gradient(at 20% 20%, rgba(26, 115, 232, 0.4) 0px, transparent 50%), radial-gradient(at 80% 80%, rgba(138, 43, 226, 0.3) 0px, transparent 50%);
+        --text-main: #e8f2ff;
+        --text-muted: #8ab4f8;
+        --accent: #1a73e8;
+        --accent-alt: #8ab4f8;
+        --glass-bg: rgba(26, 115, 232, 0.06);
+        --glass-border: rgba(138, 180, 248, 0.3);
+        --card-bg: rgba(0, 15, 30, 0.7);
+        --hover-bg: rgba(26, 115, 232, 0.15);
+        --cell-bg: rgba(0, 10, 20, 0.6);
+        --cell-header: rgba(0, 5, 10, 0.9);
     }
 
     body {
@@ -80,11 +99,9 @@
         background-image: var(--bg-mesh);
         background-attachment: fixed;
         color: var(--text-main);
-        margin: 0;
-        padding: 0;
+        margin: 0; padding: 0;
         min-height: 100vh;
-        display: flex;
-        flex-direction: column;
+        display: flex; flex-direction: column;
         transition: var(--transition);
         overflow-x: hidden;
     }
@@ -146,12 +163,12 @@
     .modal-box input:focus { border-color: var(--accent); }
 
     /* ADMIN DASHBOARD */
-    #view-admin-dashboard { padding: 40px; max-width: 1000px; margin: 0 auto; display: none; width: 100%; box-sizing: border-box; }
+    #view-admin-dashboard { padding: 40px; max-width: 1000px; margin: 40px auto; display: none; width: 100%; box-sizing: border-box; }
     .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
     .admin-table th, .admin-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
     .admin-table th { color: var(--accent); font-weight: 700; }
 
-    /* NAVBAR & PILL THEME DROPDOWN */
+    /* NAVBAR & TOGGLE SWITCHES */
     .top-nav {
         display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
         padding: 15px 40px; margin: 20px; border-radius: var(--radius-pill); gap: 15px;
@@ -161,14 +178,24 @@
     .user-badge { display: flex; align-items: center; gap: 10px; font-weight: 600; }
     .user-badge img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--accent); object-fit: cover; }
     
-    .theme-pill-dropdown {
-        background: var(--card-bg); color: var(--text-main); border: 1px solid var(--glass-border);
-        padding: 10px 24px; border-radius: var(--radius-pill); cursor: pointer; font-family: var(--font);
-        outline: none; font-weight: 600; font-size: 13px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        transition: var(--transition); appearance: none; -webkit-appearance: none; text-align: center;
+    .toggles-group { display: flex; gap: 12px; align-items: center; }
+    
+    .theme-switch {
+        position: relative; display: inline-block; width: 60px; height: 30px; cursor: pointer;
     }
-    .theme-pill-dropdown:hover { border-color: var(--accent); background: var(--hover-bg); }
-    .theme-pill-dropdown option { background: var(--bg-color); color: var(--text-main); padding: 10px; }
+    .theme-switch input { opacity: 0; width: 0; height: 0; }
+    .switch-slider {
+        position: absolute; inset: 0; background: var(--card-bg); border: 1px solid var(--glass-border);
+        border-radius: var(--radius-pill); transition: var(--transition); display: flex; align-items: center; padding: 3px;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .switch-slider:before {
+        content: ""; position: absolute; height: 22px; width: 22px; left: 4px; bottom: 3px;
+        background: var(--text-main); border-radius: 50%; transition: var(--transition);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    .theme-switch input:checked + .switch-slider { background: var(--accent); }
+    .theme-switch input:checked + .switch-slider:before { transform: translateX(30px); background: var(--bg-color); }
 
     /* STATS */
     .stats-container { display: flex; gap: 20px; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; }
@@ -196,7 +223,7 @@
     .jexcel tbody tr td { background-color: var(--cell-bg) !important; color: var(--text-main) !important; border-color: var(--glass-border) !important; font-family: var(--font) !important; font-size: 13px !important; }
     .jexcel thead tr td { background-color: var(--cell-header) !important; color: var(--accent) !important; border-color: var(--glass-border) !important; font-family: var(--font) !important; font-weight: 600 !important; }
 
-    /* VISIBLE ROUNDED UPLOAD BOX */
+    /* UPLOAD BOX */
     .upload-box { 
         padding: 40px 20px; text-align: center; cursor: pointer; transition: var(--transition); 
         position: relative; max-width: 500px; margin: 0 auto 30px auto; 
@@ -279,7 +306,7 @@
     </div>
 </div>
 
-<div id="view-admin-dashboard" class="glass-panel" style="margin: 40px auto;">
+<div id="view-admin-dashboard" class="glass-panel" style="margin: 40px auto; display: none;">
     <div class="app-header" style="text-align: left; margin-bottom: 20px;">
         <h1>Admin Database</h1>
         <p>Manage users, passwords, and permissions.</p>
@@ -288,8 +315,8 @@
     <div class="card">
         <h3>Add New User</h3>
         <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
-            <input type="text" id="new-u-name" placeholder="Name" class="theme-pill-dropdown" style="flex:1;">
-            <input type="text" id="new-u-pass" placeholder="Password" class="theme-pill-dropdown" style="flex:1;">
+            <input type="text" id="new-u-name" placeholder="Name" class="modal-box input" style="flex:1; margin:0;">
+            <input type="text" id="new-u-pass" placeholder="Password" class="modal-box input" style="flex:1; margin:0;">
             <button class="btn" id="btn-add-user">Add User</button>
         </div>
     </div>
@@ -320,12 +347,17 @@
         </div>
         
         <div class="nav-controls">
-            <!-- PILL SHAPED THEME DROPDOWN -->
-            <select class="theme-pill-dropdown" id="theme-selector">
-                <option value="dark">🌙 Dark Theme</option>
-                <option value="light">☀️ Light Theme</option>
-                <option value="neon">⚡ Neon Theme</option>
-            </select>
+            <!-- TWO GRADIENT TOGGLE SWITCHES -->
+            <div class="toggles-group">
+                <label class="theme-switch" title="Black & White Theme">
+                    <input type="checkbox" id="toggle-bw" onchange="switchTheme('bw')">
+                    <span class="switch-slider"></span>
+                </label>
+                <label class="theme-switch" title="Blue & Purple Theme">
+                    <input type="checkbox" id="toggle-bp" onchange="switchTheme('bp')">
+                    <span class="switch-slider"></span>
+                </label>
+            </div>
             
             <div class="user-badge">
                 <img id="nav-avatar" src="" alt="User">
@@ -433,11 +465,12 @@
 </div>
 
 <script>
+    // Strict neutral expression avatars: Male for Abinash, Sreeraj, Utsav; Female for Muskan
     const defaultDB = [
-        { id: 'u1', name: 'Abinash', pass: 'Abinash@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=AbinashMale&gender=male&expression=neutral', theme: 'dark', role: 'user' },
-        { id: 'u2', name: 'Sreeraj', pass: 'Sreeraj@KM', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=SreerajMale&gender=male&expression=neutral', theme: 'dark', role: 'user' },
-        { id: 'u3', name: 'Muskan', pass: 'Muskan@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=MuskanFemale&gender=female&expression=neutral', theme: 'dark', role: 'user' },
-        { id: 'u4', name: 'Utsav', pass: 'Utsav@Madaan', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=UtsavMale&gender=male&expression=neutral', theme: 'dark', role: 'user' },
+        { id: 'u1', name: 'Abinash', pass: 'Abinash@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=AbinashSafeMale&gender=male&expression=neutral&mouth=default', theme: 'dark', role: 'user' },
+        { id: 'u2', name: 'Sreeraj', pass: 'Sreeraj@KM', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=SreerajSafeMale&gender=male&expression=neutral&mouth=default', theme: 'dark', role: 'user' },
+        { id: 'u3', name: 'Muskan', pass: 'Muskan@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=MuskanSafeFemale&gender=female&expression=neutral&mouth=default', theme: 'dark', role: 'user' },
+        { id: 'u4', name: 'Utsav', pass: 'Utsav@Madaan', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=UtsavSafeMale&gender=male&expression=neutral&mouth=default', theme: 'dark', role: 'user' },
         { id: 'admin', name: 'Admin', pass: 'Abinash@2005', avatar: '', theme: 'dark', role: 'admin' }
     ];
 
@@ -544,6 +577,7 @@
         renderAdminTable();
     };
 
+    // Instant Logout & Session Clear (Forces Profile Selection Screen on hard refresh)
     window.logout = function() {
         localStorage.removeItem('abm_current_user');
         window.location.href = window.location.pathname;
@@ -556,19 +590,34 @@
         document.getElementById('nav-username').innerText = currentUser.name;
         document.getElementById('nav-avatar').src = currentUser.avatar;
 
-        document.documentElement.setAttribute('data-theme', currentUser.theme);
-        document.getElementById('theme-selector').value = currentUser.theme;
-        
-        document.getElementById('theme-selector').addEventListener('change', (e) => {
-            const newTheme = e.target.value;
-            document.documentElement.setAttribute('data-theme', newTheme);
-            currentUser.theme = newTheme;
-            localStorage.setItem('abm_current_user', JSON.stringify(currentUser));
-            const userIndex = usersDB.findIndex(u => u.id === currentUser.id);
-            if(userIndex > -1) { usersDB[userIndex].theme = newTheme; localStorage.setItem('abm_users', JSON.stringify(usersDB)); }
-        });
+        applyTheme(currentUser.theme || 'dark');
 
         initGrid();
+    }
+
+    // Two Toggle Switches Engine (Black & White vs Blue & Purple)
+    window.switchTheme = function(type) {
+        let newTheme = 'dark';
+        if (type === 'bw') {
+            const isChecked = document.getElementById('toggle-bw').checked;
+            newTheme = isChecked ? 'light' : 'dark';
+            document.getElementById('toggle-bp').checked = false; // Turn off blue/purple switch
+        } else if (type === 'bp') {
+            const isChecked = document.getElementById('toggle-bp').checked;
+            newTheme = isChecked ? 'blue' : 'purple';
+            document.getElementById('toggle-bw').checked = false; // Turn off black/white switch
+        }
+        applyTheme(newTheme);
+        currentUser.theme = newTheme;
+        localStorage.setItem('abm_current_user', JSON.stringify(currentUser));
+        const userIndex = usersDB.findIndex(u => u.id === currentUser.id);
+        if(userIndex > -1) { usersDB[userIndex].theme = newTheme; localStorage.setItem('abm_users', JSON.stringify(usersDB)); }
+    }
+
+    function applyTheme(themeName) {
+        document.documentElement.setAttribute('data-theme', themeName);
+        document.getElementById('toggle-bw').checked = (themeName === 'light');
+        document.getElementById('toggle-bp').checked = (themeName === 'blue' || themeName === 'purple');
     }
 
     let spreadsheet;
