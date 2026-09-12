@@ -382,9 +382,8 @@
             <div class="popup-topbar-title" id="popup-header-title">Article Review</div>
             <div class="popup-topbar-actions">
                 <button class="btn btn-secondary btn-sm" id="pop-btn-prev">← Prev</button>
-                <span id="pop-nav-info" style="color: var(--text-muted); font-size: 14px; font-weight: 600;">1 / 100</span>
+                <span id="pop-nav-info" style="color: var(--text-muted); font-size: 14px; font-weight: 600;">1 / 15</span>
                 <button class="btn btn-secondary btn-sm" id="pop-btn-next">Done & Next →</button>
-                <!-- NEW SEND TO CMS BUTTON -->
                 <button class="btn btn-sm" id="pop-btn-send-cms" style="background:#00f5ff;color:#000;">🚀 Send to CMS</button>
                 <button class="btn btn-danger btn-sm" id="pop-btn-close">✖ Close Viewer</button>
             </div>
@@ -550,8 +549,6 @@
 
     // --- CLEAN GLOBAL FORMATTING LOGIC (CMS-FRIENDLY + BOLD HEADINGS + FIRST LINE FIX) ---
     function applyGlobalFormatting(htmlString) {
-        // We replace closing tags and <br>s with newlines before stripping HTML 
-        // to prevent sentences from getting glued together or lost.
         let processedHtml = htmlString
             .replace(/<\/(p|h1|h2|h3|h4|h5|h6|div|li)>/gi, '\n')
             .replace(/<br\s*[\/]?>/gi, '\n');
@@ -559,29 +556,20 @@
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = processedHtml;
         
-        // Extract pure text safely
         let rawText = tempDiv.textContent || tempDiv.innerText || "";
-        
-        // Split by newlines, trim whitespace, and remove empty lines
         let lines = rawText.split('\n').map(s => s.trim()).filter(s => s.length > 0);
         
         let cleanHtml = "";
         
         lines.forEach(text => {
-            // Handle Ad Tokens safely
             if (text.includes('{@@adtoken')) {
                 cleanHtml += `<p>${text}</p>`;
                 return;
             }
-
-            // Detect if the line is a heading (short length, no ending punctuation)
             const isHeading = text.length > 0 && text.length < 100 && !/[.!?]$/.test(text);
-
             if (isHeading) {
-                // Wrap in strong tags for bolding, NO inline styles!
                 cleanHtml += `<p><strong>${text}</strong></p>`;
             } else {
-                // Standard paragraph
                 cleanHtml += `<p>${text}</p>`;
             }
         });
@@ -621,7 +609,7 @@
 
         mergedData = validRows.map((row, index) => {
             return {
-                isDone: false, // Tracks completion status
+                isDone: false,
                 imgCat: row[0] || 'N/A', imgSubCat: row[1] || 'N/A', topic: row[2] || 'N/A',
                 title: row[3] || 'N/A', desc: row[4] || 'N/A', conCat: row[5] || 'N/A',
                 conSubCat: row[6] || 'N/A', remarks: row[7] || 'N/A',
@@ -643,7 +631,6 @@
     function firePartyBomb() {
         const duration = 2000;
         const end = Date.now() + duration;
-
         (function frame() {
             confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#8ab4f8', '#d848ff', '#ffffff'] });
             confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#8ab4f8', '#d848ff', '#ffffff'] });
@@ -692,7 +679,7 @@
         }
     });
 
-    // --- POPUP LOGIC & DONE BUTTON ACTION ---
+    // --- POPUP LOGIC & 15-ITEM BATCH LOCKING ---
     document.getElementById('btn-start-queue').addEventListener('click', () => openPopup(currentPage * ITEMS_PER_PAGE));
 
     function openPopup(index) {
@@ -700,8 +687,14 @@
         currentPopupIndex = index;
         const data = mergedData[index];
 
+        const startOfBatch = currentPage * ITEMS_PER_PAGE;
+        const endOfBatch = Math.min(startOfBatch + ITEMS_PER_PAGE, mergedData.length) - 1;
+        const batchRelativeIndex = index - startOfBatch + 1;
+        const totalInBatch = endOfBatch - startOfBatch + 1;
+
         document.getElementById('popup-header-title').innerText = `ARTICLE ${index + 1} VIEWER`;
-        document.getElementById('pop-nav-info').innerText = `${index + 1} / ${mergedData.length}`;
+        // Only shows current page stats (e.g., 1 / 15)
+        document.getElementById('pop-nav-info').innerText = `${batchRelativeIndex} / ${totalInBatch}`;
 
         document.getElementById('pop-img-cat').innerText = data.imgCat;
         document.getElementById('pop-img-sub').innerText = data.imgSubCat;
@@ -714,7 +707,7 @@
         document.getElementById('pop-remarks').innerText = data.remarks;
         document.getElementById('pop-article').innerHTML = data.article;
 
-        document.getElementById('pop-btn-prev').disabled = index === 0;
+        document.getElementById('pop-btn-prev').disabled = index === startOfBatch;
 
         const nextBtn = document.getElementById('pop-btn-next');
         
@@ -726,8 +719,9 @@
             nextBtn.classList.add('btn-secondary');
         }
 
-        if (index === mergedData.length - 1) {
-            nextBtn.innerText = "Finish & Close ✖";
+        // Locks behavior to current 15-item batch
+        if (index === endOfBatch) {
+            nextBtn.innerText = "Finish Batch ✖";
         } else {
             nextBtn.innerText = "Done & Next →";
         }
@@ -747,11 +741,22 @@
         mergedData[currentPopupIndex].isDone = true;
         renderBatch(); 
         
-        if (currentPopupIndex < mergedData.length - 1) {
+        const startOfBatch = currentPage * ITEMS_PER_PAGE;
+        const endOfBatch = Math.min(startOfBatch + ITEMS_PER_PAGE, mergedData.length) - 1;
+
+        if (currentPopupIndex < endOfBatch) {
             openPopup(currentPopupIndex + 1);
         } else {
+            // Reached the end of the 15 items!
             document.getElementById('popup-overlay').style.display = 'none';
             firePartyBomb();
+            
+            // Visual prompt to switch to the next tab
+            setTimeout(() => {
+                const btnNextBatch = document.getElementById('btn-next');
+                btnNextBatch.style.boxShadow = "0 0 20px #00f5ff";
+                btnNextBatch.innerText = "Switch to Next Tab / Batch →";
+            }, 500);
         }
     });
 
