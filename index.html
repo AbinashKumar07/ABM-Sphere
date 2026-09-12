@@ -36,9 +36,9 @@
         --text-muted: #9aa0a6;
         --accent: #8ab4f8;
         --accent-alt: #d848ff;
-        --glass-bg: rgba(255, 255, 255, 0.03);
-        --glass-border: rgba(255, 255, 255, 0.08);
-        --card-bg: rgba(255, 255, 255, 0.05);
+        --glass-bg: rgba(255, 255, 255, 0.04);
+        --glass-border: rgba(255, 255, 255, 0.12);
+        --card-bg: rgba(255, 255, 255, 0.06);
         --hover-bg: rgba(255, 255, 255, 0.1);
         --cell-bg: rgba(20, 20, 20, 0.6);
         --cell-header: rgba(0, 0, 0, 0.6);
@@ -52,7 +52,7 @@
         --accent: #1a73e8;
         --accent-alt: #d848ff;
         --glass-bg: rgba(255, 255, 255, 0.6);
-        --glass-border: rgba(0, 0, 0, 0.05);
+        --glass-border: rgba(0, 0, 0, 0.1);
         --card-bg: rgba(255, 255, 255, 0.8);
         --hover-bg: rgba(0, 0, 0, 0.05);
         --cell-bg: rgba(255, 255, 255, 0.7);
@@ -66,9 +66,9 @@
         --text-muted: #b898d9;
         --accent: #d848ff;
         --accent-alt: #00f5ff;
-        --glass-bg: rgba(138, 43, 226, 0.05);
-        --glass-border: rgba(216, 72, 255, 0.3);
-        --card-bg: rgba(20, 0, 30, 0.6);
+        --glass-bg: rgba(138, 43, 226, 0.08);
+        --glass-border: rgba(216, 72, 255, 0.35);
+        --card-bg: rgba(20, 0, 30, 0.7);
         --hover-bg: rgba(216, 72, 255, 0.15);
         --cell-bg: rgba(20, 0, 40, 0.5);
         --cell-header: rgba(10, 0, 20, 0.8);
@@ -95,7 +95,7 @@
         -webkit-backdrop-filter: var(--glass-blur);
         border: 1px solid var(--glass-border);
         border-radius: var(--radius-box);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     }
 
     .btn {
@@ -151,7 +151,7 @@
     .admin-table th, .admin-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--glass-border); }
     .admin-table th { color: var(--accent); font-weight: 700; }
 
-    /* NAVBAR */
+    /* NAVBAR & FIXED THEME DROPDOWN */
     .top-nav {
         display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
         padding: 15px 40px; margin: 20px; border-radius: var(--radius-pill); gap: 15px;
@@ -164,7 +164,10 @@
     .theme-dropdown {
         background: var(--card-bg); color: var(--text-main); border: 1px solid var(--glass-border);
         padding: 8px 15px; border-radius: var(--radius-pill); cursor: pointer; font-family: var(--font);
-        outline: none; font-weight: 600;
+        outline: none; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .theme-dropdown option {
+        background: var(--bg-color); color: var(--text-main); padding: 10px;
     }
 
     /* STATS */
@@ -193,11 +196,12 @@
     .jexcel tbody tr td { background-color: var(--cell-bg) !important; color: var(--text-main) !important; border-color: var(--glass-border) !important; font-family: var(--font) !important; font-size: 13px !important; }
     .jexcel thead tr td { background-color: var(--cell-header) !important; color: var(--accent) !important; border-color: var(--glass-border) !important; font-family: var(--font) !important; font-weight: 600 !important; }
 
-    /* FIXED UPLOAD BOX */
+    /* VISIBLE ROUNDED UPLOAD BOX */
     .upload-box { 
         padding: 40px 20px; text-align: center; cursor: pointer; transition: var(--transition); 
-        position: relative; max-width: 500px; margin: 0 auto 30px auto; border: 2px dashed var(--glass-border); 
-        z-index: 50; pointer-events: auto;
+        position: relative; max-width: 500px; margin: 0 auto 30px auto; 
+        border: 2px dashed var(--glass-border); border-radius: var(--radius-box);
+        background: var(--card-bg); z-index: 50; pointer-events: auto;
     }
     .upload-box:hover { border-color: var(--accent); background: var(--hover-bg); transform: scale(1.02); }
     .upload-box input[type="file"] { 
@@ -429,10 +433,10 @@
 
 <script>
     const defaultDB = [
-        { id: 'u1', name: 'Abinash', pass: 'Abinash@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Abinash&gender=male', theme: 'dark', role: 'user' },
-        { id: 'u2', name: 'Sreeraj', pass: 'Sreeraj@KM', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sreeraj&gender=male', theme: 'dark', role: 'user' },
-        { id: 'u3', name: 'Muskan', pass: 'Muskan@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Muskan&gender=female', theme: 'dark', role: 'user' },
-        { id: 'u4', name: 'Utsav', pass: 'Utsav@Madaan', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Utsav&gender=male', theme: 'dark', role: 'user' },
+        { id: 'u1', name: 'Abinash', pass: 'Abinash@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=AbinashMale&gender=male&expression=neutral', theme: 'dark', role: 'user' },
+        { id: 'u2', name: 'Sreeraj', pass: 'Sreeraj@KM', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=SreerajMale&gender=male&expression=neutral', theme: 'dark', role: 'user' },
+        { id: 'u3', name: 'Muskan', pass: 'Muskan@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=MuskanFemale&gender=female&expression=neutral', theme: 'dark', role: 'user' },
+        { id: 'u4', name: 'Utsav', pass: 'Utsav@Madaan', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=UtsavMale&gender=male&expression=neutral', theme: 'dark', role: 'user' },
         { id: 'admin', name: 'Admin', pass: 'Abinash@2005', avatar: '', theme: 'dark', role: 'admin' }
     ];
 
@@ -525,7 +529,7 @@
         const name = document.getElementById('new-u-name').value;
         const pass = document.getElementById('new-u-pass').value;
         if(name && pass) {
-            usersDB.push({ id: 'u' + Date.now(), name, pass, avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`, theme: 'dark', role: 'user' });
+            usersDB.push({ id: 'u' + Date.now(), name, pass, avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}&expression=neutral`, theme: 'dark', role: 'user' });
             localStorage.setItem('abm_users', JSON.stringify(usersDB));
             renderAdminTable();
         }
@@ -537,7 +541,8 @@
         renderAdminTable();
     };
 
-    window.logout = () => {
+    // FIXED GLOBAL LOGOUT HOOK
+    window.logout = function() {
         localStorage.removeItem('abm_current_user');
         window.location.href = window.location.pathname;
     };
