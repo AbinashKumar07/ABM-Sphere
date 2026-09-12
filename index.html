@@ -384,6 +384,8 @@
                 <button class="btn btn-secondary btn-sm" id="pop-btn-prev">← Prev</button>
                 <span id="pop-nav-info" style="color: var(--text-muted); font-size: 14px; font-weight: 600;">1 / 100</span>
                 <button class="btn btn-secondary btn-sm" id="pop-btn-next">Done & Next →</button>
+                <!-- NEW SEND TO CMS BUTTON -->
+                <button class="btn btn-sm" id="pop-btn-send-cms" style="background:#00f5ff;color:#000;">🚀 Send to CMS</button>
                 <button class="btn btn-danger btn-sm" id="pop-btn-close">✖ Close Viewer</button>
             </div>
         </div>
@@ -457,6 +459,7 @@
                             <span class="icon-btn btn-expand" title="Expand"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><polyline points="9 21 3 21 3 15"></polyline><line x1="10" y1="14" x2="3" y2="21"></line></svg></span>
                         </div>
                     </div>
+                    <!-- The article HTML is injected here -->
                     <div class="card-content" id="pop-article"></div>
                 </div>
 
@@ -744,6 +747,22 @@
     });
 
     document.getElementById('pop-btn-close').addEventListener('click', () => document.getElementById('popup-overlay').style.display = 'none');
+
+    // --- SEND TO CMS (EXTENSION BRIDGE) ---
+    document.getElementById('pop-btn-send-cms').addEventListener('click', () => {
+        const articlePayload = mergedData[currentPopupIndex];
+
+        // Dispatches the payload to the extension
+        window.postMessage({
+            type: 'ABM_PUSH_TO_CMS',
+            payload: articlePayload
+        }, '*');
+
+        // Visual confirmation on button
+        const cmsBtn = document.getElementById('pop-btn-send-cms');
+        cmsBtn.innerText = "Transferred! ⚡";
+        setTimeout(() => cmsBtn.innerText = "🚀 Send to CMS", 1500);
+    });
 
     // --- CARDS: RICH-TEXT COPY, EXPAND, DOWNLOAD ---
     document.querySelectorAll('.btn-copy').forEach(button => {
