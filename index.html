@@ -29,7 +29,6 @@
         --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    /* THEME 1A: DARK (BLACK & WHITE GRADIENT) */
     [data-theme="dark"] {
         --bg-color: #080808;
         --bg-mesh: radial-gradient(at 0% 0%, #1c1c1c 0px, transparent 50%), radial-gradient(at 100% 100%, #000000 0px, transparent 50%);
@@ -45,7 +44,6 @@
         --cell-header: rgba(0, 0, 0, 0.8);
     }
 
-    /* THEME 1B: LIGHT (BLACK & WHITE GRADIENT) */
     [data-theme="light"] {
         --bg-color: #e6e6e6;
         --bg-mesh: radial-gradient(at 0% 0%, #ffffff 0px, transparent 50%), radial-gradient(at 100% 100%, #cccccc 0px, transparent 50%);
@@ -61,7 +59,6 @@
         --cell-header: rgba(220, 220, 220, 0.9);
     }
 
-    /* THEME 2A: PURPLE (BLUE & PURPLE GRADIENT) */
     [data-theme="purple"] {
         --bg-color: #090014;
         --bg-mesh: radial-gradient(at 20% 20%, rgba(138, 43, 226, 0.5) 0px, transparent 50%), radial-gradient(at 80% 80%, rgba(26, 115, 232, 0.4) 0px, transparent 50%);
@@ -77,7 +74,6 @@
         --cell-header: rgba(10, 0, 20, 0.9);
     }
 
-    /* THEME 2B: BLUE (BLUE & PURPLE GRADIENT) */
     [data-theme="blue"] {
         --bg-color: #000914;
         --bg-mesh: radial-gradient(at 20% 20%, rgba(26, 115, 232, 0.4) 0px, transparent 50%), radial-gradient(at 80% 80%, rgba(138, 43, 226, 0.3) 0px, transparent 50%);
@@ -437,10 +433,43 @@
 
             <div class="popup-body">
                 <div class="popup-left-pane">
+                    <!-- TOPIC (No Copy Button) -->
                     <div class="card"><div class="card-header"><span class="card-title-text">Topic</span></div><div class="card-content" id="pop-topic"></div></div>
-                    <div class="card"><div class="card-header"><span class="card-title-text">Title</span></div><div class="card-content" id="pop-title"></div></div>
-                    <div class="card"><div class="card-header"><span class="card-title-text">Description</span></div><div class="card-content" id="pop-desc"></div></div>
-                    <div class="card"><div class="card-header"><span class="card-title-text">Remarks</span></div><div class="card-content" id="pop-remarks"></div></div>
+                    
+                    <!-- TITLE (With Copy Button) -->
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title-text">Title</span>
+                            <div class="icons">
+                                <span class="icon-btn btn-copy" title="Copy"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
+                            </div>
+                        </div>
+                        <div class="card-content" id="pop-title"></div>
+                    </div>
+
+                    <!-- DESCRIPTION (With Copy Button) -->
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title-text">Description</span>
+                            <div class="icons">
+                                <span class="icon-btn btn-copy" title="Copy"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
+                            </div>
+                        </div>
+                        <div class="card-content" id="pop-desc"></div>
+                    </div>
+
+                    <!-- REMARKS (With Copy Button) -->
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-title-text">Remarks</span>
+                            <div class="icons">
+                                <span class="icon-btn btn-copy" title="Copy"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></span>
+                            </div>
+                        </div>
+                        <div class="card-content" id="pop-remarks"></div>
+                    </div>
+
+                    <!-- ARTICLE (With Copy Button) -->
                     <div class="card" style="min-height: 200px;">
                         <div class="card-header">
                             <span class="card-title-text">Article</span>
@@ -465,7 +494,6 @@
 </div>
 
 <script>
-    // Strict neutral expression avatars: Male for Abinash, Sreeraj, Utsav; Female for Muskan
     const defaultDB = [
         { id: 'u1', name: 'Abinash', pass: 'Abinash@2005', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=AbinashSafeMale&gender=male&expression=neutral&mouth=default', theme: 'dark', role: 'user' },
         { id: 'u2', name: 'Sreeraj', pass: 'Sreeraj@KM', avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=SreerajSafeMale&gender=male&expression=neutral&mouth=default', theme: 'dark', role: 'user' },
@@ -577,7 +605,6 @@
         renderAdminTable();
     };
 
-    // Instant Logout & Session Clear (Forces Profile Selection Screen on hard refresh)
     window.logout = function() {
         localStorage.removeItem('abm_current_user');
         window.location.href = window.location.pathname;
@@ -595,17 +622,16 @@
         initGrid();
     }
 
-    // Two Toggle Switches Engine (Black & White vs Blue & Purple)
     window.switchTheme = function(type) {
         let newTheme = 'dark';
         if (type === 'bw') {
             const isChecked = document.getElementById('toggle-bw').checked;
             newTheme = isChecked ? 'light' : 'dark';
-            document.getElementById('toggle-bp').checked = false; // Turn off blue/purple switch
+            document.getElementById('toggle-bp').checked = false;
         } else if (type === 'bp') {
             const isChecked = document.getElementById('toggle-bp').checked;
             newTheme = isChecked ? 'blue' : 'purple';
-            document.getElementById('toggle-bw').checked = false; // Turn off black/white switch
+            document.getElementById('toggle-bw').checked = false;
         }
         applyTheme(newTheme);
         currentUser.theme = newTheme;
