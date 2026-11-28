@@ -2,8 +2,24 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <title>ABM Immersive Content Manager & URL Matrix</title>
+<meta name="description" content="ABM Sphere editorial workspace for 1-to-1 authenticated Content Matrix (.xlsx + .docx) and URL Matrix synchronization, review, and CMS Bridge publishing.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="http://localhost:8080/">
+<meta property="og:title" content="ABM Sphere — Content Matrix & URL Matrix">
+<meta property="og:description" content="Authenticated editorial matrix synchronization, batch review, and CMS Bridge workspace.">
+<meta property="og:type" content="website">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ABM Sphere",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Content Matrix and URL Matrix editorial workspace with 1-to-1 sync authentication and CMS Bridge integration."
+}
+</script>
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='32' cy='32' r='24' stroke='url(%23grad_fav)' stroke-width='3' opacity='0.4'/%3E%3Cellipse cx='32' cy='32' rx='24' ry='8' transform='rotate(45 32 32)' stroke='url(%23grad_fav)' stroke-width='3'/%3E%3Cellipse cx='32' cy='32' rx='24' ry='8' transform='rotate(-45 32 32)' stroke='url(%23grad_fav)' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='5' fill='%23ffffff' /%3E%3Cdefs%3E%3ClinearGradient id='grad_fav' x1='8' y1='8' x2='56' y2='56'%3E%3Cstop offset='0%25' stop-color='%238ab4f8' /%3E%3Cstop offset='100%25' stop-color='%23d848ff' /%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E">
@@ -1681,8 +1697,17 @@
         flex-shrink: 0;
     }
 
-    /* Responsive adjustments */
+    /* Responsive adjustments (Tablet & Mobile-First Refinements) */
+    html, body {
+        overflow-x: hidden;
+    }
     @media (max-width: 900px) {
+        .popup-overlay-wrapper {
+            padding: 10px;
+        }
+        .popup-container {
+            height: 94vh;
+        }
         .popup-body {
             grid-template-columns: 1fr;
             overflow-y: auto;
@@ -1692,16 +1717,191 @@
             border-top: 1px solid var(--glass-border);
         }
         .top-nav {
-            padding: 12px 20px;
-            margin: 10px 10px 0 10px;
+            padding: 12px 18px;
+            margin: 10px 12px 0 12px;
+            border-radius: var(--radius-box);
+            top: 10px;
         }
         .view-section {
-            padding: 20px 15px;
+            padding: 20px 15px 40px;
+        }
+        #view-admin-dashboard {
+            padding: 20px 16px;
+            margin: 16px 12px;
+            width: calc(100% - 24px);
+            overflow-x: auto;
+        }
+    }
+    @media (max-width: 600px) {
+        .top-nav {
+            flex-direction: column;
+            align-items: stretch;
+            padding: 12px 14px;
+            gap: 12px;
+            border-radius: var(--radius-box);
+        }
+        .brand {
+            justify-content: center;
+        }
+        .nav-controls {
+            width: 100%;
+            justify-content: center;
+            gap: 10px;
+        }
+        .matrix-mode-group {
+            width: 100%;
+            justify-content: center;
+        }
+        .matrix-mode-btn {
+            flex: 1;
+            padding: 8px 10px;
+            font-size: 12px;
+            text-align: center;
+        }
+        .profile-popover {
+            right: auto;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .auth-title {
+            font-size: 24px;
+            margin-bottom: 28px;
+        }
+        .auth-subtitle {
+            font-size: 13px;
+            margin-top: -18px;
+            margin-bottom: 26px;
+        }
+        .profile-avatar {
+            width: 106px;
+            height: 106px;
+        }
+        .app-header h1 {
+            font-size: 26px;
+        }
+        .app-header p {
+            font-size: 13px;
+        }
+        .upload-box {
+            padding: 24px 16px;
+        }
+        .upload-box h3 {
+            font-size: 15.5px;
+        }
+        .url-prompt-row {
+            flex-direction: column;
+        }
+        .url-prompt-row .btn {
+            width: 100%;
+        }
+        .stats-container {
+            gap: 10px;
+        }
+        .stat-box {
+            min-width: 96px;
+            padding: 14px 10px;
+            flex: 1 1 30%;
+        }
+        .stat-num {
+            font-size: 22px;
+        }
+        .batch-controls {
+            padding: 14px;
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .batch-actions-group {
+            justify-content: center;
+            gap: 8px;
+        }
+        .topic-list-item {
+            padding: 14px 15px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .popup-topbar {
+            padding: 10px 14px;
+            gap: 8px;
+        }
+        .popup-topbar-actions {
+            width: 100%;
+            justify-content: space-between;
+            gap: 6px;
+        }
+        .popup-left-pane, .popup-right-pane {
+            padding: 16px;
+        }
+        .modal-box {
+            padding: 24px 18px;
+            width: 94%;
+            max-height: 92vh;
+            overflow-y: auto;
+        }
+        .app-footer {
+            flex-direction: column;
+            text-align: center;
+            justify-content: center;
+            padding: 14px 16px;
+        }
+    }
+
+    /* ==========================================================================
+       ACCESSIBILITY, FOCUS & REDUCED-MOTION FOUNDATION
+       ========================================================================== */
+    .skip-link {
+        position: fixed;
+        top: -100px;
+        left: 16px;
+        z-index: 100001;
+        background: var(--accent);
+        color: var(--btn-text);
+        padding: 10px 18px;
+        border-radius: var(--radius-pill);
+        font-weight: 700;
+        font-size: 13px;
+        text-decoration: none;
+        transition: top 0.15s ease;
+    }
+    .skip-link:focus {
+        top: 16px;
+    }
+    :focus-visible {
+        outline: 2px solid var(--accent-alt);
+        outline-offset: 3px;
+    }
+    .app-footer {
+        max-width: 1450px;
+        margin: 20px auto 30px auto;
+        padding: 14px 28px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        font-size: 12px;
+        color: var(--text-muted);
+        border-top: 1px solid var(--glass-border);
+    }
+    .app-footer a {
+        color: var(--accent-alt);
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .app-footer a:hover {
+        text-decoration: underline;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
         }
     }
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
 
 <!-- 0. CDN RESILIENCE BANNER -->
 <div id="lib-load-banner">
@@ -2042,6 +2242,7 @@
         </div>
     </nav>
 
+    <main id="main-content" tabindex="-1">
     <!-- ========================================================================
          VIEW 1: CONTENT MATRIX INPUT
          ======================================================================== -->
@@ -2260,6 +2461,16 @@
 
         <div id="url-batch-list-container"></div>
     </section>
+    </main>
+
+    <footer class="app-footer" role="contentinfo">
+        <span>ABM Sphere Foundation v4.2.0 • Memory-only session lifecycle (files &amp; queues wiped on Finish / Exit)</span>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="/api/health" target="_blank" rel="noopener">System Health</a>
+            <a href="/docs/01-discovery-and-prd.md" target="_blank" rel="noopener">Foundation Docs</a>
+            <a href="/404.html">404 Recovery</a>
+        </div>
+    </footer>
 
     <!-- ========================================================================
          POPUP 1: CONTENT REVIEW VIEWER (SPLIT-SCREEN)
@@ -2469,10 +2680,7 @@
     };
 
     const DEFAULT_USERS = [
-        { id: 'u1', name: 'Abinash', pass: 'Abinash@2005', role: 'admin', color: '#ff4757', permissions: { ...DEFAULT_PERMISSIONS_BY_ROLE.admin } },
-        { id: 'u2', name: 'Sreeraj', pass: 'Sreeraj@KM', role: 'user', color: '#1e90ff', permissions: { ...DEFAULT_PERMISSIONS_BY_ROLE.user } },
-        { id: 'u3', name: 'Muskan', pass: 'Muskan@2005', role: 'user', color: '#2ed573', permissions: { ...DEFAULT_PERMISSIONS_BY_ROLE.user } },
-        { id: 'u4', name: 'Utsav', pass: 'Utsav@Madaan', role: 'user', color: '#ffa502', permissions: { ...DEFAULT_PERMISSIONS_BY_ROLE.user } }
+        { id: 'u1', name: 'Abinash', pass: 'Abinash@2005', role: 'admin', color: '#ff4757', permissions: { ...DEFAULT_PERMISSIONS_BY_ROLE.admin } }
     ];
 
     function normalizeUser(user) {
@@ -2753,11 +2961,21 @@
     }
 
     function loadStoredData() {
-        // Users & Permissions config
+        // Users & Permissions config (single default user: Abinash)
         try {
             const storedUsers = localStorage.getItem('abm_users');
-            const rawUsers = storedUsers ? JSON.parse(storedUsers) : DEFAULT_USERS;
-            state.users = Array.isArray(rawUsers) ? rawUsers.map(normalizeUser) : DEFAULT_USERS.map(normalizeUser);
+            let rawUsers = storedUsers ? JSON.parse(storedUsers) : DEFAULT_USERS;
+            if (!Array.isArray(rawUsers) || rawUsers.length === 0) {
+                rawUsers = DEFAULT_USERS;
+            }
+            if (!localStorage.getItem('abm_single_user_v1')) {
+                const legacyNames = new Set(['Sreeraj', 'Muskan', 'Utsav', 'Nikita']);
+                rawUsers = rawUsers.filter(u => u && !legacyNames.has(u.name));
+                if (rawUsers.length === 0) rawUsers = DEFAULT_USERS;
+                localStorage.setItem('abm_users', JSON.stringify(rawUsers));
+                localStorage.setItem('abm_single_user_v1', '1');
+            }
+            state.users = rawUsers.map(normalizeUser);
         } catch (e) {
             state.users = DEFAULT_USERS.map(normalizeUser);
         }
@@ -7329,6 +7547,16 @@
 
             if (cUpload) cUpload.classList.toggle('active', screenName === 'upload');
             if (cBatch) cBatch.classList.toggle('active', screenName === 'batch');
+
+            const reduced = typeof window !== 'undefined'
+                && typeof window.matchMedia === 'function'
+                && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduced) {
+                if (engines.auth) engines.auth.stop();
+                if (engines.upload) engines.upload.stop();
+                if (engines.batch) engines.batch.stop();
+                return;
+            }
 
             if (engines.auth) (screenName === 'auth' ? engines.auth.start() : engines.auth.stop());
             if (engines.upload) (screenName === 'upload' ? engines.upload.start() : engines.upload.stop());

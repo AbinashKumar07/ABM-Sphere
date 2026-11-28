@@ -1,0 +1,14 @@
+{
+  "name": "abm-sphere",
+  "version": "4.2.0",
+  "description": "ABM Sphere — Content Matrix & URL Matrix Editorial Workspace with 1-to-1 Sync Authenticator, Admin Console, and CMS Bridge.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/foundation.test.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "UNLICENSED"
+}
