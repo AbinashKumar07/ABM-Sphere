@@ -1837,12 +1837,6 @@
             max-height: 92vh;
             overflow-y: auto;
         }
-        .app-footer {
-            flex-direction: column;
-            text-align: center;
-            justify-content: center;
-            padding: 14px 16px;
-        }
     }
 
     /* ==========================================================================
@@ -1868,27 +1862,6 @@
     :focus-visible {
         outline: 2px solid var(--accent-alt);
         outline-offset: 3px;
-    }
-    .app-footer {
-        max-width: 1450px;
-        margin: 20px auto 30px auto;
-        padding: 14px 28px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
-        font-size: 12px;
-        color: var(--text-muted);
-        border-top: 1px solid var(--glass-border);
-    }
-    .app-footer a {
-        color: var(--accent-alt);
-        text-decoration: none;
-        font-weight: 600;
-    }
-    .app-footer a:hover {
-        text-decoration: underline;
     }
     @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after {
@@ -2462,15 +2435,6 @@
         <div id="url-batch-list-container"></div>
     </section>
     </main>
-
-    <footer class="app-footer" role="contentinfo">
-        <span>ABM Sphere Foundation v4.2.0 • Memory-only session lifecycle (files &amp; queues wiped on Finish / Exit)</span>
-        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-            <a href="/api/health" target="_blank" rel="noopener">System Health</a>
-            <a href="/docs/01-discovery-and-prd.md" target="_blank" rel="noopener">Foundation Docs</a>
-            <a href="/404.html">404 Recovery</a>
-        </div>
-    </footer>
 
     <!-- ========================================================================
          POPUP 1: CONTENT REVIEW VIEWER (SPLIT-SCREEN)
